@@ -1,0 +1,38 @@
+server:
+  port: 8085
+
+spring:
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    port: 5672
+  cloud:
+    stream:
+      pollable-source: messageStatus
+      default-binder: rabbit
+      binders:
+        rabbit:
+          type: rabbit
+      rabbit:
+        bindings:
+          messageStatus-in-0:
+            consumer:
+              exchange-type: direct
+              binding-routing-key: message-status
+              transacted: true
+              auto-bind-dlq: true
+              dead-letter-queue-name: "message.message-status.dlq"
+          message-check-out-0:
+            producer:
+              exchange-type: direct
+              destination: message
+              binding-routing-key: message-check
+              routing-key-expression: '"message-check"'
+      bindings:
+        messageStatus-in-0:
+          group: message-status
+          destination: message
+        message-check-out-0:
+          destination: message
+      output-bindings: message-check
