@@ -11,32 +11,35 @@ spring:
     password: guest
   cloud:
     stream:
-      pollable-source: messageCheck
       default-binder: rabbit
       binders:
         rabbit:
           type: rabbit
+      function:
+        definition: messageCheck;messageStatus
       rabbit:
         bindings:
-          messageCheck-in-0:
-            consumer:
-              exchange-type: direct
-              binding-routing-key: message-check
-              transacted: true
-              auto-bind-dlq: true
-              dead-letter-queue-name: "message.message-check.dlq"
-          message-status-out-0:
+          messageStatus-out-0:
             producer:
               exchange-type: direct
-              transacted: true
               binding-routing-key: message-status
               routing-key-expression: '"message-status"'
-              destination: message
+              transacted: true
+          messageCheck-in-0:
+            consumer:
+              binding-routing-key: message-check
+              exchange-type: direct
+              auto-bind-dlq: true
+              republish-to-dlq: true
+              requeue-rejected: true
+              dead-letter-exchange: message
+              dead-letter-queue-name: "message.message-check.dlq"
       bindings:
+        messageStatus-out-0:
+          destination: message
         messageCheck-in-0:
           group: message-check
           destination: message
-        message-status-out-0:
-          destination: message
-      output-bindings:  message-status
+          consumer:
+            max-attempts: 5
 
