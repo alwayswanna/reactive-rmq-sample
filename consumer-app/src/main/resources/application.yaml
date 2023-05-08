@@ -1,0 +1,31 @@
+server:
+  port: 7002
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  flyway:
+    url: jdbc:postgresql://localhost:5432/postgres
+    user: postgres
+    password: postgres
+  rabbitmq:
+    port: 5672
+    host: localhost
+    username: guest
+    password: guest
+
+consumer-options:
+  connection-name: "rabbitmq-kt-consumer"
+  rabbit-retryer:
+    attempts: 5
+    timeout: 10
+
+logging:
+  level:
+    root: info
+

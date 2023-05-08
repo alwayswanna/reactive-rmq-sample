@@ -1,0 +1,42 @@
+server:
+  port: 7001
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  rabbitmq:
+    port: 5672
+    host: localhost
+    username: guest
+    password: guest
+
+producer-options:
+  connection-name: "rabbitmq-kt-producer"
+  dlq-queue-bindings-map:
+    message-dlq:
+      queue-name: "reactive-kt-rmq.message.dlq"
+  queue-bindings-map:
+    message:
+      queue-name: "reactive-kt-rmq.message"
+      dlq-exchange-name: "DLX"
+      dlq-routing-key: "reactive-kt-rmq.message"
+  exchange-bindings-map:
+    reactive-kt-rmq:
+      exchange-name: "reactive-kt-rmq"
+    dlx:
+      exchange-name: "DLX"
+  binding-options-map:
+    message:
+      queue-name: "reactive-kt-rmq.message"
+      exchange-name: "reactive-kt-rmq"
+      routing-key: "message"
+    message-dlq:
+      queue-name: "reactive-kt-rmq.message.dlq"
+      exchange-name: "DLX"
+      routing-key: "reactive-kt-rmq.message"
+
+logging:
+  level:
+    root: info
+

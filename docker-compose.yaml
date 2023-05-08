@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  postgres:
+    image: postgres:15.3
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
