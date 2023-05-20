@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Producer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="reaktive-kt-sample.producer-app.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="a.gleb.producerapp.ProducerAppApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
