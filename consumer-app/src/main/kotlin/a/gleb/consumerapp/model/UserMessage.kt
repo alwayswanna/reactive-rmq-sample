@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UserMessage(
     var username: String,
-    var message: String
+    var message: String?
 )
