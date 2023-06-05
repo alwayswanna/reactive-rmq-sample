@@ -1,4 +1,4 @@
-tasks.register("prepareKotlinBuildScriptModel"){}
+tasks.register("prepareKotlinBuildScriptModel") {}
 
 plugins {
     id("org.springframework.boot")
@@ -11,6 +11,7 @@ val reactorRabbitMQVersion = "1.5.6"
 val springDocOpenApiVersion = "2.1.0"
 val kotlinMuLoggingVersion = "3.0.5"
 val kotlinSerializationVersion = "1.5.1"
+val apachePoiVersion = "5.2.3"
 
 dependencies {
     /* spring */
@@ -27,6 +28,7 @@ dependencies {
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation("org.apache.poi:poi-ooxml:$apachePoiVersion")
 
     /* annotation processor */
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")

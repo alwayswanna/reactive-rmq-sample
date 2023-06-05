@@ -20,7 +20,7 @@ class SenderService(
     /**
      * Method send message to queue with publish confirms
      */
-    suspend fun sendMessage(message: UserMessage){
+    suspend fun sendMessage(message: UserMessage) {
         val queueName = properties.queueBindingsMap["message"]?.queueName
 
         sender
@@ -29,8 +29,8 @@ class SenderService(
                 SendOptions().trackReturned(true)
             )
             .doOnError { logger.error { "Error while send message to queue $queueName, $it" } }
-            .subscribe{
-                if (it.isReturned){
+            .subscribe {
+                if (it.isReturned) {
                     logger.error { "Error while send message to queue $queueName" }
                 }
             }
