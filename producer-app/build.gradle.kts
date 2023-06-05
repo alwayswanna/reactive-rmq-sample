@@ -16,6 +16,7 @@ dependencies {
     /* spring */
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-amqp")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 
     /* other */
     implementation("io.projectreactor.rabbitmq:reactor-rabbitmq:$reactorRabbitMQVersion")

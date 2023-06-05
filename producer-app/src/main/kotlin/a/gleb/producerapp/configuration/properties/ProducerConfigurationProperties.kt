@@ -1,6 +1,7 @@
 package a.gleb.producerapp.configuration.properties
 
 import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.web.cors.CorsConfiguration
 
 
 @ConfigurationProperties("producer-options")
@@ -10,6 +11,7 @@ class ProducerConfigurationProperties {
     var exchangeBindingsMap: Map<String, ExchangeBinding> = mapOf()
     var bindingOptionsMap: Map<String, BindingOptions> = mapOf()
     var dlqQueueBindingsMap: Map<String, DlqQueueBinding> = mapOf()
+    var cors: Cors = Cors()
 }
 
 class QueueBinding {
@@ -31,4 +33,6 @@ class BindingOptions {
     var exchangeName: String? = null
     var routingKey: String? = null
 }
+
+class Cors: CorsConfiguration()
 
