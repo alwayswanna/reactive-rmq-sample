@@ -12,6 +12,14 @@ spring:
     password: guest
 
 producer-options:
+  cors:
+    allowed-origins:
+      - "*"
+    allowed-origins-all: true
+    allowed-methods:
+      - "*"
+    allowed-headers:
+      - "*"
   connection-name: "rabbitmq-kt-producer"
   dlq-queue-bindings-map:
     message-dlq:
